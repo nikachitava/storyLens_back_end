@@ -8,9 +8,10 @@ export const registerUser = (req, res) => {
 	connection.query(query, [email], (err, data) => {
 		if (err) return res.status(500).json({ message: err.message });
 		if (data.length)
-			return res.status(200).json({ message: "Email already used" });
+			return res.status(409).json({ message: "Email already used" });
 
-		const nickName = username + surname;
+
+		const nickName = username + surname + Date.now().toString();
 
 		const insertQuery =
 			"INSERT INTO users (`nickname`, `username`, `surname`, `password`, `email`) VALUES (?, ?, ?, ?, ?)";
