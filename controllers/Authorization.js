@@ -1,4 +1,5 @@
 import { connection } from "../connection.js";
+import jwt from 'jsonwebtoken'
 
 export const registerUser = (req, res) => {
 	const { username, surname, password, email } = req.body;
@@ -11,7 +12,7 @@ export const registerUser = (req, res) => {
 			return res.status(409).json({ message: "Email already used" });
 
 
-		const nickName = username + surname + Date.now().toString();
+		const nickName = username + surname + Date();
 
 		const insertQuery =
 			"INSERT INTO users (`nickname`, `username`, `surname`, `password`, `email`) VALUES (?, ?, ?, ?, ?)";
@@ -40,7 +41,17 @@ export const loginUser = (req, res) => {
 				.status(200)
 				.json({ message: "Email or password incorrect" });
 
-		return res.status(200).json(data);
+		if(password !== data[0].password) {
+            return res.status(400).json({message: "Wrong password"})
+        }
+
+        const token = jwt.sign({id: data[0].id}, "secretkey")
+
+        const {password: userPassword, ...others} = data[0]
+
+        res.cookie("accessToken", token, {
+            httpOnly: true,
+        }).status(200).json(others);
 	});
 };
 
@@ -51,3 +62,10 @@ export const getUsers = (req, res) => {
 		return res.status(200).json(data);
 	});
 };
+
+export const logout = (req, res) => {
+    res.clearCookie("accessToken", {
+        secure: true,
+        sameSite: "none"
+    }).status(200).json("User has beed logged out")
+}
