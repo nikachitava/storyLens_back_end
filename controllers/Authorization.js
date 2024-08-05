@@ -30,24 +30,23 @@ export const registerUser = (req, res) => {
 };
 
 export const loginUser = (req, res) => {
-	const { email, password } = req.body;
 
 	const query =
-		"SELECT email, password from users WHERE email = ? AND password = ?";
-	connection.query(query, [email, password], (err, data) => {
+		"SELECT * from users WHERE email = ?";
+	connection.query(query, [req.body.email], (err, data) => {
 		if (err) return res.status(500).json({ message: err.message });
 		if (!data.length)
 			return res
 				.status(200)
 				.json({ message: "Email or password incorrect" });
 
-		if(password !== data[0].password) {
+		if(req.body.password !== data[0].password) {
             return res.status(400).json({message: "Wrong password"})
         }
 
         const token = jwt.sign({id: data[0].id}, "secretkey")
 
-        const {password: userPassword, ...others} = data[0]
+        const {password, ...others} = data[0]
 
         res.cookie("accessToken", token, {
             httpOnly: true,
