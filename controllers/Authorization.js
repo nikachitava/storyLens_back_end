@@ -37,7 +37,7 @@ export const loginUser = (req, res) => {
 		if (err) return res.status(500).json({ message: err.message });
 		if (!data.length)
 			return res
-				.status(200)
+				.status(400)
 				.json({ message: "Email or password incorrect" });
 
 		if(req.body.password !== data[0].password) {
