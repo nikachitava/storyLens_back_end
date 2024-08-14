@@ -12,7 +12,8 @@ export const registerUser = (req, res) => {
 			return res.status(409).json({ message: "Email already used" });
 
 
-		const nickName = username + surname + Date();
+		const date = new Date()
+		const nickName = username + surname + date.getMilliseconds();
 
 		const insertQuery =
 			"INSERT INTO users (`nickname`, `username`, `surname`, `password`, `email`) VALUES (?, ?, ?, ?, ?)";
