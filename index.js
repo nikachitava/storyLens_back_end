@@ -2,8 +2,6 @@ import express from "express";
 import cors from 'cors'
 import cookieParser from 'cookie-parser';
 
-import multer from 'multer'
-import path from 'path'
 import bodyParser from "body-parser";
 
 import { connection } from "./connection.js";
@@ -34,16 +32,7 @@ app.use("/user", usersRoute);
 app.use("/posts", postsRoute);
 
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, 'public/images')
-    },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-    }
-  });
-  
-  const upload = multer({ storage: storage }).single('coverImage');
+
 
 
 
