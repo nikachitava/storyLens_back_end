@@ -16,6 +16,15 @@ export const getMyPost = (req, res) => {
         return res.status(200).json(data);
     })
 }
+
+export const getMyPostByID = (req, res) => {
+    const postID = req.params.postID;
+    const query = "SELECT posts.*, users.nickname AS author FROM posts JOIN users ON posts.userID = users.userID WHERE posts.postID = ?";
+    connection.query(query, [postID], (err, data) => {
+        if(err) return res.status(500).json({message: err.message});
+        return res.status(200).json(data);
+    })
+}
  
 export const addNewPost = (req, res) => {
     const { title, content, userID } = req.body;
@@ -23,11 +32,17 @@ export const addNewPost = (req, res) => {
 
     const query = "INSERT INTO posts (title, content, userID, coverImage) VALUES (?, ?, ?, ?)";
     connection.query(query, [title, content, userID, coverImage], (err, data) => {
-        if(err) {
-            console.error("Database error: ", err);
-            return res.status(500).json({message: err.message})
+        if(err) return res.status(500).json({message: err.message});
             
-        } 
-            return res.status(200).json({message: "Blog created successfully"})
+        return res.status(200).json({message: "Post created successfully"});
+    })
+}
+
+export const deletePost = (req, res) => {
+    const { postID } = req.params;
+    const query = "DELETE from posts WHERE postID = ?";
+    connection.query(query, [postID], (err, data) => {
+        if(err) return res.status(500).json({message: err.message})
+        return res.status(200).json({message: `Post id ${postID} deleted successfully`});
     })
 }

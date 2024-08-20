@@ -1,5 +1,5 @@
 import express from 'express'
-import { getPosts, getMyPost, addNewPost } from '../controllers/Posts.js'
+import { getPosts, getMyPost, addNewPost, deletePost, getMyPostByID } from '../controllers/Posts.js'
 
 import multer from 'multer'
 import path from 'path'
@@ -22,5 +22,7 @@ const upload = multer({ storage: storage })
 router.get("/", getPosts);
 router.get("/myposts/:userID", getMyPost);
 router.post('/addnewblog', upload.single('coverImage'), addNewPost);
+router.delete("/deletepost/:postID", deletePost);
+router.get("/mypost/:postID", getMyPostByID);
 
 export default router;
