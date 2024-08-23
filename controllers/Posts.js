@@ -46,3 +46,13 @@ export const deletePost = (req, res) => {
         return res.status(200).json({message: `Post id ${postID} deleted successfully`});
     })
 }
+
+export const editPost = (req, res) => {
+    const {postID} = req.params;
+    const {title, content} = req.body;
+    const query = "UPDATE posts SET title = ?, content = ? WHERE postID = ?";
+    connection.query(query, [title, content, postID], (err, data) => {
+        if(err) return res.status(500).json({message: err.message})
+            return res.status(200).json({message: `Post updated successfully`})
+    })
+}
