@@ -21,8 +21,8 @@ app.use(
         origin: "http://localhost:5173",
     })
 );
-app.use(express.json())
-app.use(cookieParser())
+app.use(express.json());
+app.use(cookieParser());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));

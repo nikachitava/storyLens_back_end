@@ -38,6 +38,7 @@ export const addNewPost = (req, res) => {
     })
 }
 
+
 export const deletePost = (req, res) => {
     const { postID } = req.params;
     const query = "DELETE from posts WHERE postID = ?";
