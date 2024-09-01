@@ -8,6 +8,7 @@ import { connection } from "./connection.js";
 
 import usersRoute from './routes/Authorization.js'
 import postsRoute from './routes/Posts.js'
+import likesRoute from './routes/Likes.js'
 
 
 const app = express();
@@ -30,6 +31,7 @@ app.use(express.static('public'));
 
 app.use("/user", usersRoute);
 app.use("/posts", postsRoute);
+app.use("/likes", likesRoute)
 
 
 
