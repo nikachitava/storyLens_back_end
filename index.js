@@ -31,11 +31,7 @@ app.use(express.static('public'));
 
 app.use("/user", usersRoute);
 app.use("/posts", postsRoute);
-app.use("/likes", likesRoute)
-
-
-
-
+app.use("/likes", likesRoute);
 
 
 const PORT = 3000;
