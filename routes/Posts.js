@@ -1,5 +1,5 @@
 import express from 'express'
-import { getPosts, getMyPost, addNewPost, deletePost, getMyPostByID, editPost } from '../controllers/Posts.js'
+import { getPosts, getMyPost, addNewPost, deletePost, getMyPostByID, editPost, getMainBlog } from '../controllers/Posts.js'
 
 import multer from 'multer'
 import path from 'path'
@@ -25,5 +25,6 @@ router.post('/addnewblog', upload.single('coverImage'), addNewPost);
 router.delete("/deletepost/:postID", deletePost);
 router.get("/mypost/:postID", getMyPostByID);
 router.patch("/mypost/edit/:postID", editPost)
+router.get("/getmainblog", getMainBlog)
 
 export default router;

@@ -57,3 +57,11 @@ export const editPost = (req, res) => {
             return res.status(200).json({message: `Post updated successfully`})
     })
 }
+
+export const getMainBlog = (req, res) => {
+    const query = "SELECT * from mainblog INNER JOIN posts on mainblog.postID = posts.postID";
+    connection.query(query, (err, data) => {
+        if(err) return res.status(500).json({message: err.message});
+        return res.status(200).json(data);
+    })
+}
