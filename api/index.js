@@ -4,12 +4,12 @@ import cookieParser from 'cookie-parser';
 
 import bodyParser from "body-parser";
 
-import { connection } from "./connection.js";
+import { connection } from "../connection.js";
 
-import usersRoute from './routes/Authorization.js'
-import postsRoute from './routes/Posts.js'
-import likesRoute from './routes/Likes.js'
-import commentsRoute from './routes/Comments.js'
+import usersRoute from '../routes/Authorization.js'
+import postsRoute from '../routes/Posts.js'
+import likesRoute from '../routes/Likes.js'
+import commentsRoute from '../routes/Comments.js'
 
 
 const app = express();
@@ -35,6 +35,8 @@ app.use("/user", usersRoute);
 app.use("/posts", postsRoute);
 app.use("/likes", likesRoute);
 app.use("/comments", commentsRoute);
+
+export default app;
 
 
 // const PORT = 3000;
