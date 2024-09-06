@@ -4,12 +4,11 @@ import cookieParser from 'cookie-parser';
 
 import bodyParser from "body-parser";
 
-import { connection } from "./connection.js";
 
-import usersRoute from './routes/Authorization.js'
-import postsRoute from './routes/Posts.js'
-import likesRoute from './routes/Likes.js'
-import commentsRoute from './routes/Comments.js'
+import usersRoute from '../routes/Authorization.js'
+import postsRoute from '../routes/Posts.js'
+import likesRoute from '../routes/Likes.js'
+import commentsRoute from '../routes/Comments.js'
 
 
 const app = express();
@@ -38,13 +37,4 @@ app.use("/likes", likesRoute);
 app.use("/comments", commentsRoute);
 
 
-const PORT = 3000;
-connection.connect((err) => {
-    if(err) {
-        console.log("error connecting to database: ", err)
-        return
-    } 
-    app.listen(PORT, () => {
-        console.log(`App is running port ${PORT}`);
-    });
-})
+export default app
