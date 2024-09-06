@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 app.use(
     cors({
         origin: "https://story-lens-indol.vercel.app",
+        credentials: true,
         
     })
 );
