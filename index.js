@@ -1,5 +1,5 @@
 import express from "express";
-// import cors from 'cors'
+import cors from 'cors'
 import cookieParser from 'cookie-parser';
 
 import bodyParser from "body-parser";
@@ -37,13 +37,13 @@ app.use("/likes", likesRoute);
 app.use("/comments", commentsRoute);
 
 
-const PORT = 3000;
-connection.connect((err) => {
-    if(err) {
-        console.log("error connecting to database: ", err)
-        return
-    } 
-    app.listen(PORT, () => {
-        console.log(`App is running port ${PORT}`);
-    });
-})
+// const PORT = 3000;
+// connection.connect((err) => {
+//     if(err) {
+//         console.log("error connecting to database: ", err)
+//         return
+//     } 
+//     app.listen(PORT, () => {
+//         console.log(`App is running port ${PORT}`);
+//     });
+// })
