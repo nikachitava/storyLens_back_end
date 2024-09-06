@@ -1,5 +1,5 @@
 import express from "express";
-import cors from 'cors'
+// import cors from 'cors'
 import cookieParser from 'cookie-parser';
 
 import bodyParser from "body-parser";
@@ -18,11 +18,11 @@ app.use((req, res, next) => {
     res.header("Access-Control-Allow-Credentials", true);
     next();
 });
-app.use(
-    cors({
-        origin: "http://localhost:5173",
-    })
-);
+// app.use(
+//     cors({
+//         origin: "http://localhost:5173",
+//     })
+// );
 app.use(express.json());
 app.use(cookieParser());
 
