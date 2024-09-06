@@ -38,12 +38,12 @@ app.use("/comments", commentsRoute);
 
 
 // const PORT = 3000;
-// connection.connect((err) => {
-//     if(err) {
-//         console.log("error connecting to database: ", err)
-//         return
-//     } 
-//     app.listen(PORT, () => {
-//         console.log(`App is running port ${PORT}`);
-//     });
-// })
+connection.connect((err) => {
+    if(err) {
+        console.log("error connecting to database: ", err)
+        return
+    } 
+    // app.listen(PORT, () => {
+    //     console.log(`App is running port ${PORT}`);
+    // });
+})
