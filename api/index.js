@@ -1,5 +1,5 @@
 import express from "express";
-import cors from 'cors'
+// import cors from 'cors'
 import cookieParser from 'cookie-parser';
 
 import bodyParser from "body-parser";
@@ -14,17 +14,17 @@ import commentsRoute from '../routes/Comments.js'
 
 const app = express();
 
-app.use((req, res, next) => {
-    res.header("Access-Control-Allow-Credentials", true);
-    next();
-});
-app.use(
-    cors({
-        origin: "https://story-lens-indol.vercel.app", 
-        credentials: true
-    })
-);
-app.use(cors())
+// app.use((req, res, next) => {
+//     res.header("Access-Control-Allow-Credentials", true);
+//     next();
+// });
+// app.use(
+//     cors({
+//         origin: "https://story-lens-indol.vercel.app", 
+//         credentials: true
+//     })
+// );
+// app.use(cors())
 app.use(express.json());
 app.use(cookieParser());
 
