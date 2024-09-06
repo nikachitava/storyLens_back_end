@@ -20,7 +20,7 @@ app.use((req, res, next) => {
 });
 app.use(
     cors({
-        origin: "https://story-lens-indol.vercel.app/",
+        origin: "https://story-lens-indol.vercel.app",
     })
 );
 app.use(express.json());
