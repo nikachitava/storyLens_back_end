@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 
 import bodyParser from "body-parser";
 
-import { connection } from "../connection.js";
+// import { connection } from "../connection.js";
 
 import usersRoute from '../routes/Authorization.js'
 import postsRoute from '../routes/Posts.js'
@@ -21,6 +21,7 @@ app.use((req, res, next) => {
 app.use(
     cors({
         origin: "https://story-lens-indol.vercel.app", 
+        credentials: true
     })
 );
 app.use(cors())
