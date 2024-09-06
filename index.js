@@ -21,7 +21,7 @@ const app = express();
 app.use(
     cors({
         origin: "https://story-lens-indol.vercel.app",
-        crede
+        
     })
 );
 app.use(express.json());
